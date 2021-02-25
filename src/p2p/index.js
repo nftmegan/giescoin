@@ -5,7 +5,7 @@ client = require('./core/client');
 server = require('./core/server');
 router = require('./core/router');
 
-exports.connect = async () => {
+const connect = async () => {
     if(config.listen_to_peers) {
         await server.listen(router).then((response) => {
             console.log("SERVER: Listening to peers on port", response.port);
@@ -18,4 +18,4 @@ exports.connect = async () => {
     client.connectToPeerList(router);
 }
 
-module.exports = { client, server, router }
+module.exports = { connect, client, server, router }
