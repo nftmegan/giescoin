@@ -1,0 +1,34 @@
+{
+  "name": "giescoin",
+  "version": "0.2",
+  "description": "My attempt of creating a decentralized blockchain and cryptocurrency",
+  "main": "src/index.js",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "cors": "^2.8.5",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "ecstatic": "^4.1.4",
+    "express": "^4.17.1",
+    "json-parse-safe": "^2.0.0",
+    "json-stringify-safe": "^5.0.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.7",
+    "portfinder": "^1.0.28",
+    "ws": "^7.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FranciscoGiestas/GiesCoin.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/FranciscoGiestas/GiesCoin/issues"
+  },
+  "homepage": "https://github.com/FranciscoGiestas/GiesCoin#readme"
+}
