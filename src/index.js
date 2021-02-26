@@ -3,24 +3,23 @@ require('dotenv').config();
 const express = require("express");
 
 const connectToNetwork = async () => {
-  const p2p = require('./p2p');
-  await p2p.connect();
+    const p2p = require('./p2p');
+    await p2p.connect();
 }
 
 const startServer = async () => {
     var listenPort;     
-  
+
     const portfinder = require('portfinder');
     await portfinder.getPortPromise({
-      port: 9000,
-      stopPort: 9005
-    })
-        .then((port) => {
-            listenPort = port;
-        });
+        port: 9000,
+        stopPort: 9005
+    }).then((port) => {
+        listenPort = port;
+    });
 
     const app = express();
-  
+
     const loader = require("./api/loaders");
     await loader.load(app);
 
@@ -33,7 +32,7 @@ const startServer = async () => {
 const init = async () => {
     console.log(`
       #####################################################
-      ★      GiesCoin 0.1 - by Francisco Giestas <3       ★
+      ★              GiesCoin Core v0.1.1                 ★
       #####################################################
       `);
       
@@ -47,5 +46,5 @@ const init = async () => {
 }
 
 init().then(() => {
-  console.log("Successfully started GiesCoin!");
+    console.log("Successfully started GiesCoin!");
 });

@@ -4,6 +4,7 @@ const WebSocket = require("ws");
 var wss;
 
 const router = require('./router');
+const events = require('./events');
 
 exports.listen = async () => {
     var listenPort;
@@ -33,6 +34,8 @@ exports.listen = async () => {
 const onConnection = (socket) => {
     socket.on('connection', (ws, req) => {
         console.log("SERVER: Connections so far:", this.getClientsCount());
+
+        events.fire('CLIENT_CONNECTED');
 
         onReceivedMessage(ws);
         onCloseConnection(ws);

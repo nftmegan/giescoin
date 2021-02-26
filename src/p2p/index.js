@@ -4,6 +4,7 @@ const config = require('../config');
 client = require('./core/client');
 server = require('./core/server');
 router = require('./core/router');
+events = require('./core/events');
 
 const connect = async () => {
     if(config.listen_to_peers) {
@@ -17,5 +18,9 @@ const connect = async () => {
 
     client.connectToPeerList(router);
 }
+
+events.on('CLIENT_CONNECTED', (data) => {
+    console.log("SERVER: Someone connected");
+});
 
 module.exports = { connect, client, server, router }

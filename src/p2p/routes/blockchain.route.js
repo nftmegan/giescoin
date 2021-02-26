@@ -5,11 +5,12 @@ module.exports = function(router) {
     router.on('REQUEST_CHAIN_HEIGHT', (sender, data) => {
         var chainHeight = blockChain.chainHeight();
         var message = router.createMessage("ANSWER_CHAIN_HEIGHT", chainHeight);
+        
         sender.send(message);
     });
     
     router.on('ANSWER_CHAIN_HEIGHT', (sender, data) => {
-        console.log("A chain do peer de do tamanho:", data);
+        //console.log("A chain do peer de do tamanho:", data);
     });
     
     router.on('teste', (sender, data) => {

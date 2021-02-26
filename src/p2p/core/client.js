@@ -46,7 +46,7 @@ const onCloseConnection = (socket) => {
         if (event.wasClean) {
             console.log("CLIENT: Connection to a peer closed cleanly:", event.reason);
         } else {
-            console.log('CLIENT: Connection to a peer died');
+            //console.log('CLIENT: Connection to a peer died');
         }
     });
 }
