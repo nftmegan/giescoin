@@ -7,7 +7,7 @@ const connectToNetwork = async () => {
     await p2p.connect();
 }
 
-const startServer = async () => {
+const startAPI = async () => {
     var listenPort;     
 
     const portfinder = require('portfinder');
@@ -40,8 +40,8 @@ const init = async () => {
       console.log("Connected to the network!");
     });
     
-    await startServer().then((port) => {
-      console.log(`BlockChain API started at *:${port}`);      
+    await startAPI().then((port) => {
+      console.log(`BlockChain API started at port ${port}`);      
     });
 }
 

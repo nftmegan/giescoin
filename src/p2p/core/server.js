@@ -3,7 +3,6 @@ const util = require('./util');
 const WebSocket = require("ws");
 var wss;
 
-const router = require('./router');
 const events = require('./events');
 
 exports.listen = async () => {
@@ -20,7 +19,7 @@ exports.listen = async () => {
     
     onConnection(wss);
 
-    const interval = setInterval(function ping() {
+    setInterval(function ping() {
         wss.clients.forEach(function each(ws) {
             if (ws.isAlive === false) return ws.terminate();
         });
@@ -33,9 +32,9 @@ exports.listen = async () => {
 
 const onConnection = (socket) => {
     socket.on('connection', (ws, req) => {
-        console.log("SERVER: Connections so far:", this.getClientsCount());
+        var data = { clientCount: this.getClientsCount() };
 
-        events.fire('CLIENT_CONNECTED');
+        events.fire('SERVER::CLIENT_CONNECTED', ws, data);
 
         onReceivedMessage(ws);
         onCloseConnection(ws);
@@ -44,15 +43,14 @@ const onConnection = (socket) => {
 
 const onReceivedMessage = (ws) => {
     ws.on('message', (data) => {
-        parsedData = util.parse(data).value;
-
-        router.fire(parsedData.path, ws, parsedData.data);
+        var dataRead = util.readMessage(data);
+        events.fire(dataRead.path, ws, dataRead.data);
     });
 }
 
 const onCloseConnection = (ws) => {
     ws.on('close', () => {
-        console.log("SERVER: Client disconnected, client count:", this.getClientsCount());
+        events.fire('SERVER::CLIENT_DISCONNECTED', ws);
     });
 }
 
@@ -72,7 +70,7 @@ exports.getClientsCount = () => {
 }
 
 exports.emitToClient = (socket, path, data) => {
-    var message = router.createMessage(path, data);
+    var message = util.createMessage(path, data);
     socket.send(message);
 }
 

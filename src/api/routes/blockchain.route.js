@@ -4,7 +4,7 @@ const router = require("express").Router();
 
 //Define our routers here
 router.get('/', (req, res) => {
-    res.type('json').send(JSON.stringify(blockChain.chain, null, 2) + '\n');
+    res.type('json').send(JSON.stringify(blockChain.getChain(), null, 2) + '\n');
 });
 
 router.get('/valid', (req, res) => {

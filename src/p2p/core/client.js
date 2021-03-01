@@ -1,14 +1,16 @@
-const WebSocket = require("ws");
+const util = require('./util');
+
+const WebSocket = require('ws');
 
 //list of address to connect to
 const peers = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
 var sockets = [];
 
-const router = require('./router');
+const events = require('./events');
 
 exports.emitToServer = (socket, path, data = "") => {
-    var message = router.createMessage(path, data);
+    var message = util.createMessage(path, data);
     socket.send(message);
 }
 
@@ -20,7 +22,7 @@ exports.connectToPeer = (url) => {
     console.log("CLIENT: Trying to connect to peer:", url);
 
     const socket = new WebSocket(url);
-    
+
     onOpenConnection(socket);
     onErrorConnection(socket);
     onCloseConnection(socket);
@@ -30,8 +32,7 @@ exports.connectToPeer = (url) => {
 const onOpenConnection = (socket) => {
     socket.on('open', () => {
         sockets.push(socket);
-        this.emitToServer(socket, 'REQUEST_CHAIN_HEIGHT');
-        console.log("CLIENT: Connected to peer", socket.url);
+        events.fire('CLIENT::CONNECTED_TO_SERVER', socket);
     });
 }
 
@@ -53,7 +54,7 @@ const onCloseConnection = (socket) => {
 
 const onReceivedMessage = (socket) => {
     socket.on('message', (data) => {
-        var parsedData = router.parseMessage(data);
-        router.fire(parsedData.path, socket, parsedData.data);
+        var parsedData = util.readMessage(data);
+        events.fire(parsedData.path, socket, parsedData.data);
     });
 }

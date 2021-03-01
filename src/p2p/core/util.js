@@ -21,3 +21,11 @@ exports.strConnectionState = (socket) => {
 
 exports.stringify = (str) => require('json-stringify-safe')(str);
 exports.parse = (str) => require('json-parse-safe')(str);
+
+exports.createMessage = (path, data) => {
+    return this.stringify({ path: path, data: data });
+}
+
+exports.readMessage = (data) => {
+    return this.parse(data).value;
+}

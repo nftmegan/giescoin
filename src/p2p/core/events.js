@@ -4,12 +4,17 @@ class Event {
         this.callbackFnc = callbackFnc;
     }
 
-    fire(sender, data) {
-        this.callbackFnc(sender, data);
+    fire(res, data) {
+        this.callbackFnc(res, data);
     }
 }
 
 var eventsArr = [];
+
+const util = require('./util');
+exports.util = () => {
+    return util;
+};
 
 exports.on = (path, callbackFnc) => {
     if (getEventByPath(path))
@@ -19,11 +24,11 @@ exports.on = (path, callbackFnc) => {
     eventsArr.push(newEvent);
 }
 
-exports.fire = (path, sender, data) => {
+exports.fire = (path, res, data) => {
     var event = getEventByPath(path);
 
     if (event)
-        event.fire(sender, data);
+        event.fire(res, data);
 }
 
 const getEventByPath = (path) => {
@@ -35,3 +40,5 @@ const getEventByPath = (path) => {
     });
     return event != null ? event : false;
 }
+
+require('../events')(this);
