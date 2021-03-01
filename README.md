@@ -45,7 +45,7 @@ FranciscoGiestas – giestas3@gmail.com
 
 Distributed under the MIT license. See ``LICENSE`` for more information.
 
-[https://github.com/yourname/github-link](https://github.com/FranciscoGiestas/)
+[https://github.com/FranciscoGiestas/](https://github.com/FranciscoGiestas/)
 
 ## Contributing
 
