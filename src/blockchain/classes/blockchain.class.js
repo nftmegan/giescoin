@@ -4,13 +4,13 @@ const Transaction = require('./transaction.class');
 class BlockChain {
     constructor() {
         this.chain = [this.createGenesisBlock()];
-        this.difficulty = 2;
+        this.difficulty = 4;
         this.pendingTransactions = [];
         this.miningReward = 100;
     }
 
     createGenesisBlock() {
-        return new Block(Date.parse('2017-01-01'), [], '0');
+        return new Block(Date.now(), [], '0');
     }
   
     getLatestBlock() {

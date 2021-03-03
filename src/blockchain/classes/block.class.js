@@ -36,7 +36,7 @@ class Block {
         this.hash = this.calculateHash();
       }
   
-      debug(`Block mined: ${this.hash}`);
+      console.log(`Block mined: ${this.hash}`);
     }
   
     /**

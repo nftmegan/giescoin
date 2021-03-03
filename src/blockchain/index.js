@@ -9,6 +9,10 @@ exports.getChain = () => {
     return blockChain.chain;
 }
 
-exports.mineBlock = () => {
-    return blockChain.chainHeight();
+exports.isChainValid = () => {
+    return blockChain.isChainValid();
+}
+
+exports.mine = () => {
+    return blockChain.minePendingTransactions("A MINHA CONTA DO SANTANDER");
 }

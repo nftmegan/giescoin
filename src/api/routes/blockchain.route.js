@@ -1,6 +1,5 @@
 const blockChain = require('../../blockchain');
 const router = require("express").Router();
-//const webSockets = require('../p2p').p2pServer();
 
 //Define our routers here
 router.get('/', (req, res) => {
@@ -9,6 +8,16 @@ router.get('/', (req, res) => {
 
 router.get('/valid', (req, res) => {
     res.send(blockChain.isChainValid());
+});
+
+router.get('/mine', (req, res) => {
+    blockChain.mine();
+    res.send("Mined a block");
+});
+
+router.get('/height', (req, res) => {
+    var data = blockChain.chainHeight().toString();
+    res.send(data);
 });
 
 router.get('/peers', (req, res) => {

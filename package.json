@@ -9,6 +9,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "ecstatic": "^4.1.4",
+    "elliptic": "^6.5.4",
     "express": "^4.17.1",
     "json-parse-safe": "^2.0.0",
     "json-stringify-safe": "^5.0.1",
