@@ -12,8 +12,8 @@ const startAPI = async () => {
 
     const portfinder = require('portfinder');
     await portfinder.getPortPromise({
-        port: 7000,
-        stopPort: 7002
+        port: 9000,
+        stopPort: 9002
     }).then((port) => {
         listenPort = port;
     });

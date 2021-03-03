@@ -10,10 +10,12 @@ exports.listen = async () => {
 
     //Find an empty port
     const portfinder = require('portfinder');
-    await portfinder.getPortPromise()
-        .then((port) => {
+    await portfinder.getPortPromise({
+        port: 7000,
+        stopPort: 7002
+    }).then((port) => {
             listenPort = port;
-        });
+    });
 
     wss = new WebSocket.Server({ port: listenPort });
     
